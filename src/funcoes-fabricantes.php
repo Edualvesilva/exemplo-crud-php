@@ -30,5 +30,5 @@ function lerFabricantes(PDO $conexao)
 };
 
 // Teste 
-$dados = lerFabricantes($conexao);
-var_dump($dados);
+/* $dados = lerFabricantes($conexao);
+var_dump($dados); */
