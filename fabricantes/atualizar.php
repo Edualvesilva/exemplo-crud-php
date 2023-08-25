@@ -13,7 +13,6 @@ if(isset($_POST["atualizar"])){
     header("location:visualizar.php");
 };
 
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
