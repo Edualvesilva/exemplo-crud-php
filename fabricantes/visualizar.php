@@ -4,6 +4,9 @@ require_once "../src/funcoes-fabricantes.php";
 
 /* Guardando o retorno/resultado da função lerFabricantes */
 $DadosFabricantes = lerFabricantes($conexao);
+
+/* Guardando o retorno/resultado da função lerFabricantes */
+$quantidade = count($DadosFabricantes);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -31,7 +34,7 @@ $DadosFabricantes = lerFabricantes($conexao);
             padding: 8px;
         }
 
-        tr:nth-child(even){
+        tr:nth-child(even) {
             background-color: #f2f2f2;
         }
     </style>
@@ -45,31 +48,35 @@ $DadosFabricantes = lerFabricantes($conexao);
     <p><a href="inserir.php">Inserir novo Fabricante</a></p>
 
     <table>
-        <caption>Lista de Fabricantes</caption>
+        <caption>Lista de Fabricantes: <?= $quantidade ?></caption>
         <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Operações</th>
-        </tr>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Operações</th>
+            </tr>
         </thead>
         <tbody>
-        <?php
-    
-        foreach ($DadosFabricantes as $dados) {
-        ?> <tr>
-                <td><?= $dados["nome"] ?></td>
-                <td><?= $dados["id"] ?></td>
-                <td><a href="">Editar</a>
-                <a href="">Excluir</a></td>
-                
+            <?php
 
-            </tr>
-        <?php
-        }; ?>
+            foreach ($DadosFabricantes as $dados) {
+            ?> <tr>
+                    <td><?= $dados["id"] ?></td>
+                    <td><?= $dados["nome"] ?></td>
+
+                    <!-- Link DINÂMICO
+                   A URL do href precisa de parâmetro com dados 
+                   dinâmicos (no caso,o ID de cada fabricante) -->
+                    <td><a href="atualizar.php?id=<?= $dados["id"] ?>">Editar</a>
+                        <a href="atualizar.php">Excluir</a>
+                    </td>
+
+
+                </tr>
+            <?php
+            }; ?>
         </tbody>
     </table>
-
 
 </body>
 
