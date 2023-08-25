@@ -64,3 +64,7 @@ function lerUmFabricante(PDO $conexao, int $idFabricante)
     }
     return $resultado;
 }; // Fim lerUmFabricante
+
+function atualizarFabricante(PDO $conexao,string $nomeFabricante,int $idFabricante){
+
+};
