@@ -20,9 +20,8 @@ function lerFabricantes(PDO $conexao)
         /* Método fetchALL()
          Buscar todos os dados da consulta como um array associativo. */
         $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
-
     } catch (Exception $erro) {
-        die("Erro :".$erro->getMessage());
+        die("Erro :" . $erro->getMessage());
     }
 
 
@@ -30,7 +29,8 @@ function lerFabricantes(PDO $conexao)
 }; // Fim lerFabricantes
 
 // Usada em fabricantes/inserir.php
-function inserirFabricante (PDO $conexao, string $nomeFabricante ){
+function inserirFabricante(PDO $conexao, string $nomeFabricante)
+{
     /* :qualquercoisa -> isso indica um "named parameter" (parâmetro nomeado) */
     $sql = "INSERT INTO fabricantes(nome) VALUES(:nome)";
 
@@ -42,10 +42,25 @@ function inserirFabricante (PDO $conexao, string $nomeFabricante ){
         É necessário indicar qual é o parâmetro(:nome), de onde
         vem o valor ($nomeFabricante) e de que tipo ele é
         (PDO::PARAM_STR) */
-        $consulta-> bindValue(":nome",$nomeFabricante,PDO::PARAM_STR);
-        $consulta-> execute();
-
+        $consulta->bindValue(":nome", $nomeFabricante, PDO::PARAM_STR);
+        $consulta->execute();
     } catch (Exception $erro) {
-        die("Erro ao Inserir: ".$erro->getMessage());
+        die("Erro ao Inserir: " . $erro->getMessage());
     }
-};
+}; // Fim inserirFabricante
+
+function lerUmFabricante(PDO $conexao, int $idFabricante)
+{
+    $sql = "SELECT * FROM fabricantes WHERE id = :id";
+
+    try {
+        $consulta = $conexao->prepare($sql);
+        $consulta->bindValue(":id", $idFabricante, PDO::PARAM_INT);
+        $consulta->execute();
+
+        $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+    } catch (Exception $erro) {
+        die("Erro ao Carregar: ". $erro->getMessage());
+    }
+    return $resultado;
+}; // Fim lerUmFabricante
