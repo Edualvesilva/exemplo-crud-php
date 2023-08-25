@@ -1,3 +1,20 @@
+<?php
+/* Verificando se o Formulário/botão foi acionado */
+if(isset($_POST['inserir'])){
+    // Importando as funçôes e conexão
+    require_once "../src/funcoes-fabricantes.php";
+
+    // Capturando o valor digitado do nome e sanitizado
+    $nome = filter_input(INPUT_POST, 'nome',FILTER_SANITIZE_SPECIAL_CHARS);
+
+    /* Chamar a função, passar os dados de conexão e o dado (nome do fabricante) digitado
+    no formulário. */
+    inserirFabricante($conexao,$nome);
+
+    /* após inserir,Redirecionamos para a visualização */
+    header("location:visualizar.php");
+};
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
