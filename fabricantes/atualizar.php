@@ -1,8 +1,11 @@
 <?php
+require_once "../src/funcoes-fabricantes.php";
 /* Obtendo e sanitizando o valor vindo do parâmetro de URL (link dinâmico) */
- $id = filter_input(INPUT_GET,"id", FILTER_SANITIZE_NUMBER_INT);
+$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 
-
+/* Chamando a Função e recuperando os dados de um
+ fabricante de acordo com o id passado. */
+$fabricante = lerUmFabricante($conexao, $id);
 
 ?>
 <!DOCTYPE html>
@@ -18,16 +21,17 @@
     <h1>Fabricantes | SELECT/UPDATE</h1>
     <hr>
     <form action="" method="post">
+        <input type="hidden" name="id" value="<?= $fabricante['id'] ?>">
         <p>
             <label for="nome">Nome:</label>
-            <input type="text" name="nome" id="nome">
+            <input value="<?= $fabricante["nome"] ?>" required type="text" name="nome" id="nome">
         </p>
 
         <button type="submit" name="atualizar">Atualizar Fabricante</button>
     </form>
 
     <hr>
-        <p><a href="visualizar.php">Voltar</a></p>
+    <p><a href="visualizar.php">Voltar</a></p>
 </body>
 
 </html>
