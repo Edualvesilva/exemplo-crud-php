@@ -47,11 +47,11 @@ $quantidade = count($DadosFabricantes);
     <h2>Lendo e carregando todos os fabricantes.</h2>
     <p><a href="inserir.php">Inserir novo Fabricante</a></p>
 
-<?php
-    if(isset($_GET["status"]) && $_GET["status"] === "sucesso"){ ?>
+    <?php
+    if (isset($_GET["status"]) && $_GET["status"] === "sucesso") { ?>
         <h2 style="color: blue">Fabricante atualizado com sucesso!</h2>
- <?php   };
-?>
+    <?php   };
+    ?>
 
 
     <table>
@@ -75,7 +75,7 @@ $quantidade = count($DadosFabricantes);
                    A URL do href precisa de parâmetro com dados 
                    dinâmicos (no caso,o ID de cada fabricante) -->
                     <td><a href="atualizar.php?id=<?= $dados["id"] ?>">Editar</a>
-                        <a href="apagar.php?id=<?= $dados["id"]?>">Excluir</a>
+                        <a class="excluir" href="apagar.php?id=<?= $dados["id"] ?>">Excluir</a>
                     </td>
 
 
@@ -85,6 +85,7 @@ $quantidade = count($DadosFabricantes);
         </tbody>
     </table>
 
+    <script src="../js/confirma.js"></script>
 </body>
 
 </html>
