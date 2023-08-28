@@ -47,6 +47,13 @@ $quantidade = count($DadosFabricantes);
     <h2>Lendo e carregando todos os fabricantes.</h2>
     <p><a href="inserir.php">Inserir novo Fabricante</a></p>
 
+<?php
+    if(isset($_GET["status"]) && $_GET["status"] === "sucesso"){ ?>
+        <h2 style="color: blue">Fabricante atualizado com sucesso!</h2>
+ <?php   };
+?>
+
+
     <table>
         <caption>Lista de Fabricantes: <?= $quantidade ?></caption>
         <thead>
@@ -68,7 +75,7 @@ $quantidade = count($DadosFabricantes);
                    A URL do href precisa de parâmetro com dados 
                    dinâmicos (no caso,o ID de cada fabricante) -->
                     <td><a href="atualizar.php?id=<?= $dados["id"] ?>">Editar</a>
-                        <a href="atualizar.php">Excluir</a>
+                        <a href="apagar.php?id=<?= $dados["id"]?>">Excluir</a>
                     </td>
 
 
