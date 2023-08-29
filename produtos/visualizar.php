@@ -29,7 +29,6 @@ $listaProdutos = lerProdutos($conexao);
             padding: 20px;
             border-radius: 10px;
             width: calc(33.33% - 20px);
-            /* To create a 3-column layout */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
@@ -60,9 +59,11 @@ $listaProdutos = lerProdutos($conexao);
 foreach($listaProdutos as $produto){ 
      ?>
         <article class="produto">
-            <h3><?=$produto["nome"]?></h3>
+            <h3><?=$produto["produto"]?></h3>
+            <h4>Fabricante: <?=$produto["fabricante"]?></h4>
             <p><b>Preço: </b><?= formatarPreco($produto["preco"])?></p>
             <p><b>Quantidade: </b><?=$produto["quantidade"]?></p>
+            <p><b><?=contarTotal($produto["preco"],$produto["quantidade"])?></b></p>
         </article>
         <?php
 }
