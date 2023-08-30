@@ -1,9 +1,11 @@
 <?php
 require_once "../src/funcoes-produtos.php";
+require_once "../src/funcoes-fabricantes.php";
 
+$listaDeFabricantes = lerFabricantes($conexao);
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 
-$produto = lerUmproduto($conexao,$id);
+$produto = lerUmproduto($conexao, $id);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -27,29 +29,43 @@ $produto = lerUmproduto($conexao,$id);
     <form action="" method="post">
         <p>
             <label for="nome">Nome:</label>
-            <input type="text" name="nome" id="nome" required value="<?=$produto["nome"]?>">
+            <input type="text" name="nome" id="nome" required value="<?= $produto["nome"] ?>">
         </p>
 
         <p>
             <label for="preco">Preço: </label>
-            <input type="number" min="10" max="10000" step="0.01" name="preco" id="preco" required value="<?=$produto["preco"]?>">
+            <input type="number" min="10" max="10000" step="0.01" name="preco" id="preco" required value="<?= $produto["preco"] ?>">
         </p>
 
         <p>
             <label for="quantidade">Quantidade: </label>
-            <input type="number" min="10" max="10000" step="0.01" name="quantidade" id="quantidade" required value="<?=$produto["quantidade"]?>">
+            <input type="number" min="10" max="10000" step="0.01" name="quantidade" id="quantidade" required value="<?= $produto["quantidade"] ?>">
         </p>
 
         <p>
             <label for="fabricante">Fabricante: </label>
             <select requird name="fabricante" id="fabricante">
                 <option value=""></option>
-            </select>
-        </p>
 
+                <?php foreach ($listaDeFabricantes as $fabricante) { ?>
+                    <!-- Lógica/Algoritmo da seleção do fabricanre
+                    Se a chave estrangeira for idêntica à chave primária,ou
+                    seja, se o id do fabricante do produto (coluna fabricante_id da tabela produtos)
+                    for igual ao id do fabricante (coluna id da tabela fabricantes), então coloque o atributo "Selected" no
+                    <option> -->
+                    <option <?php
+                            // chave estrangeira === chave primaria
+                            if ($produto["fabricante_id"] === $fabricante["id"]) echo " selected "; ?> value="<?= $fabricante["id"] ?>"><?= $fabricante["nome"] ?></option>
+
+                <?php } ?>
+            </select>
+
+
+
+        </p>
         <p>
             <label for="descricao">Descrição: </label> <br>
-            <textarea name="descricao" id="descricao" cols="30" rows="3"><?=$produto["descricao"]?></textarea>
+            <textarea name="descricao" id="descricao" cols="30" rows="3"><?= $produto["descricao"] ?></textarea>
         </p>
 
         <button type="submit" name="atualizar">Atualizar Produto</button>
