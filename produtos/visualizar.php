@@ -55,19 +55,23 @@ $listaProdutos = lerProdutos($conexao);
 
     <div class="produtos">
 
-<?php
-foreach($listaProdutos as $produto){ 
-     ?>
-        <article class="produto">
-            <h3><?=$produto["produto"]?></h3>
-            <h4>Fabricante: <?=$produto["fabricante"]?></h4>
-            <p><b>Preço: </b><?= formatarPreco($produto["preco"])?></p>
-            <p><b>Quantidade: </b><?=$produto["quantidade"]?></p>
-            <p><b><?=contarTotal($produto["preco"],$produto["quantidade"])?></b></p>
-        </article>
         <?php
-}
-?>
+        foreach ($listaProdutos as $produto) {
+        ?>
+            <article class="produto">
+                <h3><?= $produto["produto"] ?></h3>
+                <h4>Fabricante: <?= $produto["fabricante"] ?></h4>
+                <p><b>Preço: </b><?= formatarPreco($produto["preco"]) ?></p>
+                <p><b>Quantidade: </b><?= $produto["quantidade"] ?></p>
+                <p><b><?= contarTotal($produto["preco"], $produto["quantidade"]) ?></b></p>
+                <hr>
+                <p>
+                    <a href="atualizar.php?id=<?=$produto["id"]?>" >Editar</a> | <a href="apagar.php?id=<?=$produto["id"]?>">Excluir</a>
+                </p>
+            </article>
+        <?php
+        }
+        ?>
     </div>
 
 

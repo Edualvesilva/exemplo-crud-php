@@ -49,6 +49,19 @@ function lerProdutos(PDO $conexao): array
         } catch (Exception $erro) {
             die("Erro ao inserir produto: ".$erro->getMessage());
         }
-    };
+    }; // Fim inserirProduto
 
+function lerUmproduto (PDO $conexao,int $produtoId):array{
+   $sql = "SELECT * FROM produtos WHERE id = :id";
+   try {
+    $consulta = $conexao->prepare($sql);
+    $consulta->bindValue(":id",$produtoId,PDO::PARAM_INT);
+    $consulta->execute();
+     $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
 
+   } catch (Exception $erro) {
+    die("Erro ao Selecionar: ".$erro->getMessage());
+   
+   }
+   return $resultado;
+};
