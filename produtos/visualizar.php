@@ -66,7 +66,7 @@ $listaProdutos = lerProdutos($conexao);
                 <p><b><?= contarTotal($produto["preco"], $produto["quantidade"]) ?></b></p>
                 <hr>
                 <p>
-                    <a href="atualizar.php?id=<?=$produto["id"]?>" >Editar</a> | <a href="apagar.php?id=<?=$produto["id"]?>">Excluir</a>
+                    <a href="atualizar.php?id=<?=$produto["id"]?>" >Editar</a> | <a class="excluir" href="apagar.php?id=<?=$produto["id"]?>">Excluir</a>
                 </p>
             </article>
         <?php
@@ -74,7 +74,7 @@ $listaProdutos = lerProdutos($conexao);
         ?>
     </div>
 
-
+    <script src="../js/confirma.js"></script>
 </body>
 
 </html>
